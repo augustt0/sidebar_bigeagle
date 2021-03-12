@@ -1,3 +1,7 @@
+## [0.0.4] - 03/12/2021
+
+* Logo is not an Image anymore, now you've to pass a Widget object
+
 ## [0.0.3] - 03/12/2021
 
 * Main function error fix2

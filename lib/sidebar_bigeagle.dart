@@ -16,7 +16,7 @@ class SideBar extends StatefulWidget {
   List<SideBarButtonFlat> children;
   int selectedIndex = 0;
   final IntCallback onChange;
-  Image logo;
+  Widget logo;
   Color color;
   @override
   _SideBarState createState() => _SideBarState(children: children, logo: logo, color: color);
@@ -25,7 +25,7 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar> with TickerProviderStateMixin{
   _SideBarState({@required this.children, this.logo, this.color});
 
-  Image logo;
+  Widget logo;
   Color color;
 
   static int _selectedIndex = 0;
