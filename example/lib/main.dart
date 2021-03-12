@@ -19,6 +19,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     pages = [
+      // List of pages of example, this is the principal app content
       Text("Dashboard page"),
       Text("Inventory page"),
       Text("Search page"),
@@ -38,12 +39,17 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Row(
         children: [
+          // SideBar Big Eagle
           SideBar(
+            color: Colors.teal,
+            appColor: Colors.white, // Optional, white is default
+            accentColor: Colors.white, // Optional, white is default
             logo: Image.asset(
               "res/placeholder.com-logo4.png",
               fit: BoxFit.fitWidth,
               ),
             children: [
+              // Button list
               SideBarButtonFlat(title: "Dashboard", icon: Icons.dashboard),
               SideBarButtonFlat(title: "Inventory", icon: Icons.view_list),
               SideBarButtonFlat(title: "Search", icon: Icons.search),
@@ -53,12 +59,13 @@ class _MyAppState extends State<MyApp> {
               SideBarButtonFlat(title: "About", icon: Icons.info),
             ],
             onChange: (value) {
+              // When the selection changes, value it's an int
               setState(() {
                 _selectedIndex = value;
               });
             }
           ),
-          // Contenido principal
+          // Principal app content
           Expanded(
             child: pages[_selectedIndex],
           )

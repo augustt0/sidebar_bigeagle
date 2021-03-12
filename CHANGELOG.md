@@ -1,3 +1,8 @@
+## [0.1.2] - 03/12/2021
+
+* Example updated
+* Accent color and App color are working
+
 ## [0.1.1] - 03/12/2021
 
 * import error fix
