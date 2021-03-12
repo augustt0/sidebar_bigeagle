@@ -1,4 +1,6 @@
 # SideBar BigEagle
+![logo](https://user-images.githubusercontent.com/48627057/110890237-60923300-82ce-11eb-8ea6-d4d6791d8f90.png)
+
 
 This package adds a Sidebar widget which is convenient for Web & Desktop.
 
