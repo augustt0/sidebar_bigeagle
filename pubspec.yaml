@@ -1,6 +1,6 @@
 name: sidebar_bigeagle
 description: This package adds a Sidebar widget which is convenient for Web & Desktop.
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/augustt0/sidebar_bigeagle
 
 environment:
