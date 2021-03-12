@@ -31,7 +31,6 @@ flutter:
         pluginClass: SideBar
       web:
         pluginClass: SideBar
-        fileName: sidebar_bigeagle.dart
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
