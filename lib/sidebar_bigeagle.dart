@@ -6,8 +6,8 @@ export 'package:sidebar_bigeagle/src/SideBarButtonFlat.dart';
 import 'package:animated_size_and_fade/animated_size_and_fade.dart';
 import 'package:flutter/material.dart';
 
-import 'package:sidebar_bigeagle/src/SideBarButton.dart';
-import 'package:sidebar_bigeagle/src/SideBarButtonFlat.dart';
+import 'src/SideBarButton.dart';
+import 'src/SideBarButtonFlat.dart';
 
 typedef IntCallback(int);
 

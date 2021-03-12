@@ -6,16 +6,17 @@ import 'dart:async';
 import 'dart:html' as html show window;
 
 import 'package:flutter/services.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-/// A web implementation of the SidebarBigeagle plugin.
-class SidebarBigeagleWeb {
+/// A web implementation of the SideBar BigEagle plugin.
+class SideBar {
   static void registerWith() {
     final MethodChannel channel = MethodChannel(
-      'sidebar_bigeagle',
+      'hello',
       const StandardMethodCodec(),
     );
 
-    final pluginInstance = SidebarBigeagleWeb();
+    final pluginInstance = SideBar();
     channel.setMethodCallHandler(pluginInstance.handleMethodCall);
   }
 
@@ -30,7 +31,7 @@ class SidebarBigeagleWeb {
       default:
         throw PlatformException(
           code: 'Unimplemented',
-          details: 'sidebar_bigeagle for web doesn\'t implement \'${call.method}\'',
+          details: 'hello for web doesn\'t implement \'${call.method}\'',
         );
     }
   }

@@ -1,6 +1,6 @@
 name: sidebar_bigeagle
 description: This package adds a Sidebar widget which is convenient for Web & Desktop.
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/augustt0/sidebar_bigeagle
 
 environment:
@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   animated_size_and_fade: ^2.0.0
+  flutter_web_plugins:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

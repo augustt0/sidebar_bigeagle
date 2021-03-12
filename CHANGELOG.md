@@ -1,3 +1,7 @@
+## [0.0.8] - 03/12/2021
+
+* sidebar_bigeagle_web
+
 ## [0.0.7] - 03/12/2021
 
 * Web plugin fix2
