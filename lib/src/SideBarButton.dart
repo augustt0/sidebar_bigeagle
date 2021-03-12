@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 
-class SideBarButton extends StatelessWidget {
-  SideBarButton({@required this.title, @required this.icon, @required this.pressed, @required this.index, this.updateValue});
+class SideBarButton extends StatelessWidget {  
+  /// Label of the button
   final String title;
+
+  /// Icon of the button
   final IconData icon;
+
+  /// If the button is selected
   final bool pressed;
+
+  /// Current position of the button in the Side Bar
   final int index;
+
+  /// Function called when te user tap the button
   final Function updateValue;
+
+  SideBarButton({@required this.title, @required this.icon, @required this.pressed, @required this.index, this.updateValue});
   @override
   Widget build(BuildContext context) {
     double spacing = MediaQuery.of(context).size.width / 40;

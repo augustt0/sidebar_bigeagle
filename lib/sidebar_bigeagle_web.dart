@@ -9,11 +9,10 @@ import 'package:flutter/services.dart';
 
 /// A web implementation of the SidebarBigeagle plugin.
 class SidebarBigeagleWeb {
-  static void registerWith(Registrar registrar) {
+  static void registerWith() {
     final MethodChannel channel = MethodChannel(
       'sidebar_bigeagle',
       const StandardMethodCodec(),
-      registrar,
     );
 
     final pluginInstance = SidebarBigeagleWeb();
