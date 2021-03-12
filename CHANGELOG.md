@@ -1,3 +1,7 @@
+## [0.1.0] - 03/12/2021
+
+* Web error should be fixed
+
 ## [0.0.9] - 03/12/2021
 
 * sidebar_bigeagle_web

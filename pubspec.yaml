@@ -1,6 +1,6 @@
 name: sidebar_bigeagle
 description: This package adds a Sidebar widget which is convenient for Web & Desktop.
-version: 0.0.9
+version: 0.1.0
 homepage: https://github.com/augustt0/sidebar_bigeagle
 
 environment:
@@ -31,6 +31,7 @@ flutter:
         pluginClass: SideBar
       web:
         pluginClass: SideBar
+        fileName: sidebar_bigeagle_web.dart
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
