@@ -1,3 +1,8 @@
+## [0.0.5] - 03/12/2021
+
+* Static anaysis fix
+* Documentation added
+
 ## [0.0.4] - 03/12/2021
 
 * Logo is not an Image anymore, now you've to pass a Widget object
