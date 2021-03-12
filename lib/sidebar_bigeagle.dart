@@ -11,6 +11,7 @@ import 'package:sidebar_bigeagle/src/SideBarButtonFlat.dart';
 
 typedef IntCallback(int);
 
+// ignore: must_be_immutable
 class SideBar extends StatefulWidget {
   /// List of buttons of the Side Bar
   final List<SideBarButtonFlat> children;

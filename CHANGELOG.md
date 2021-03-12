@@ -1,3 +1,7 @@
+## [0.0.6] - 03/12/2021
+
+* Web plugin fix
+
 ## [0.0.5] - 03/12/2021
 
 * Static anaysis fix
