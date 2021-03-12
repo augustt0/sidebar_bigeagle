@@ -6,17 +6,20 @@ import 'SideBarButtonFlat.dart';
 typedef IntCallback(int);
 
 class SideBar extends StatefulWidget {
-  SideBar({Key key, @required this.children, this.onChange}) : super(key: key);
+  SideBar({Key key, @required this.children, @required this.logo, this.onChange}) : super(key: key);
   List<SideBarButtonFlat> children;
   int selectedIndex = 0;
   final IntCallback onChange;
+  Image logo;
 
   @override
-  _SideBarState createState() => _SideBarState(children: children);
+  _SideBarState createState() => _SideBarState(children: children, logo: logo);
 }
 
 class _SideBarState extends State<SideBar> with TickerProviderStateMixin{
-  _SideBarState({@required this.children});
+  _SideBarState({@required this.children, this.logo});
+
+  Image logo;
 
   static int _selectedIndex = 0;
 
@@ -55,8 +58,9 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin{
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    // TODO: implement initState
+    super.initState();
     initializeWidgets();
   }
 
@@ -106,6 +110,14 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin{
                     );
                   }),
               )
+            ),
+            Positioned(
+              top: 40,
+              left: 10,
+              child: Container(
+                width: MediaQuery.of(context).size.width / 6 + 10,
+                child: logo,
+                ),
             ),
           ],
         ));
