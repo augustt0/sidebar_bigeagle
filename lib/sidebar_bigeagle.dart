@@ -70,6 +70,7 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
       SideBarButton sideBarButtonOpen = new SideBarButton(
         title: element.title,
         icon: element.icon,
+        color: widget.color,
         accentColor: widget.accentColor,
         appColor: widget.appColor,
         pressed: true,
@@ -79,6 +80,7 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
       SideBarButton sideBarButtonClose = new SideBarButton(
         title: element.title,
         icon: element.icon,
+        color: widget.color,
         accentColor: widget.accentColor,
         appColor: widget.appColor,
         pressed: false,

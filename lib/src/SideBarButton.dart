@@ -16,6 +16,9 @@ class SideBarButton extends StatelessWidget {
   /// Function called when te user tap the button
   final Function updateValue;
 
+  // SideBar background color
+  final Color color;
+
   /// Accent color of the Side Bar (Text and icons color), white is default.
   final Color accentColor;
 
@@ -29,6 +32,7 @@ class SideBarButton extends StatelessWidget {
       @required this.index,
       @required this.accentColor,
       @required this.appColor,
+      @required this.color,
       this.updateValue});
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class SideBarButton extends StatelessWidget {
                           ),
                           Icon(
                             icon,
-                            color: Colors.teal,
+                            color: color,
                           ),
                           SizedBox(
                             width: spacing,
@@ -62,7 +66,7 @@ class SideBarButton extends StatelessWidget {
                           Text(
                             title,
                             style: TextStyle(
-                              color: Colors.teal,
+                              color: color,
                             ),
                             overflow: TextOverflow.fade,
                           ),
@@ -70,7 +74,7 @@ class SideBarButton extends StatelessWidget {
                       )
                     : Icon(
                         icon,
-                        color: Colors.teal,
+                        color: color,
                       ),
               )
             : Center(
