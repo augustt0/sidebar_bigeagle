@@ -14,32 +14,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
 
+  int _selectedIndex = 0;
+
+  List<Widget> pages = [];
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await SidebarBigeagle.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+    pages = [
+      Text("Dashboard page"),
+      Text("Inventory page"),
+      Text("Search page"),
+      Text("Online orders page"),
+      Text("Codes page"),
+      Text("Settings page"),
+      Text("About page"),
+    ];
   }
 
   @override
@@ -49,9 +39,34 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
+        body: Row(
+        children: [
+          SideBar(
+            logo: Image.asset(
+              "res/placeholder.com-logo4.png",
+              fit: BoxFit.fitWidth,
+              ),
+            children: [
+              SideBarButtonFlat(title: "Dashboard", icon: Icons.dashboard),
+              SideBarButtonFlat(title: "Inventory", icon: Icons.view_list),
+              SideBarButtonFlat(title: "Search", icon: Icons.search),
+              SideBarButtonFlat(title: "Online orders", icon: Icons.receipt),
+              SideBarButtonFlat(title: "Codes", icon: Icons.qr_code_scanner),
+              SideBarButtonFlat(title: "Settings", icon: Icons.settings),
+              SideBarButtonFlat(title: "About", icon: Icons.info),
+            ],
+            onChange: (value) {
+              setState(() {
+                _selectedIndex = value;
+              });
+            }
+          ),
+          // Contenido principal
+          Expanded(
+            child: pages[_selectedIndex],
+          )
+        ],
+      ),
       ),
     );
   }
