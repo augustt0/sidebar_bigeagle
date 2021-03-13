@@ -3,7 +3,6 @@ library sidebar_bigeagle;
 export 'package:sidebar_bigeagle/src/SideBarButton.dart';
 export 'package:sidebar_bigeagle/src/SideBarButtonFlat.dart';
 
-import 'package:animated_size_and_fade/animated_size_and_fade.dart';
 import 'package:flutter/material.dart';
 
 import 'src/SideBarButton.dart';
@@ -22,22 +21,26 @@ class SideBar extends StatefulWidget {
   /// Logo of the app
   final Widget logo;
 
+  /// Should the buttons expand when mouse hover? How much?, 1 is default
+  final double onHoverScale;
+
   /// Background color of the Side Bar
   final Color color;
 
   /// Accent color of the Side Bar (Text and icons color), white is default.
-  Color accentColor = Colors.white;
+  final Color accentColor;
 
   /// The app color, white is default.
-  Color appColor = Colors.white;
+  final Color appColor;
 
   SideBar(
       {Key key,
       @required this.children,
       @required this.logo,
       @required this.color,
-      this.accentColor,
-      this.appColor,
+      this.accentColor = Colors.white,
+      this.appColor = Colors.white,
+      this.onHoverScale = 1.0,
       @required this.onChange})
       : super(key: key);
   @override
@@ -70,6 +73,7 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
       SideBarButton sideBarButtonOpen = new SideBarButton(
         title: element.title,
         icon: element.icon,
+        onHoverScale: widget.onHoverScale,
         color: widget.color,
         accentColor: widget.accentColor,
         appColor: widget.appColor,
@@ -80,6 +84,7 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
       SideBarButton sideBarButtonClose = new SideBarButton(
         title: element.title,
         icon: element.icon,
+        onHoverScale: widget.onHoverScale,
         color: widget.color,
         accentColor: widget.accentColor,
         appColor: widget.appColor,
@@ -122,10 +127,9 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
                           bottomRight: Radius.circular(35))),
                   elevation: 0.0,
                   color: color,
-                ),
-              ),
-            ),
-            Positioned(
+                  child: Stack(
+                    children: [
+                      Positioned(
                 left: 10,
                 top: MediaQuery.of(context).size.height / 4,
                 bottom: 0,
@@ -137,14 +141,9 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
                       shrinkWrap: true,
                       physics: BouncingScrollPhysics(),
                       itemBuilder: (context, i) {
-                        return AnimatedSizeAndFade(
-                          vsync: this,
-                          child: _selectedIndex == i
+                        return _selectedIndex == i
                               ? _selectedButtonOpen[i]
-                              : _selectedButtonClosed[i],
-                          fadeDuration: const Duration(milliseconds: 50),
-                          sizeDuration: const Duration(milliseconds: 200),
-                        );
+                              : _selectedButtonClosed[i];
                       }),
                 )),
             Positioned(
@@ -153,6 +152,11 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
               child: Container(
                 width: MediaQuery.of(context).size.width / 6 + 10,
                 child: logo,
+              ),
+            ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],

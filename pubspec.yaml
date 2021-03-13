@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  animated_size_and_fade: ^2.0.0
   flutter_web_plugins:
     sdk: flutter
 
@@ -25,6 +24,11 @@ dev_dependencies:
 flutter:
   plugin:
     platforms:
+      android:
+        package: com.bigeagle.sidebar_bigeagle
+        pluginClass: SidebarBigeaglePlugin
+      ios:
+        pluginClass: SideBar
       macos:
         pluginClass: SideBar
       windows:

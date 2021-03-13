@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-class SideBarButton extends StatelessWidget {
-  /// Label of the button
+class SideBarButton extends StatefulWidget {
+/// Label of the button
   final String title;
 
   /// Icon of the button
   final IconData icon;
+
+  /// Should the button expand when mouse hover? How much?, 1 is default
+  final double onHoverScale;
 
   /// If the button is selected
   final bool pressed;
@@ -33,22 +36,33 @@ class SideBarButton extends StatelessWidget {
       @required this.accentColor,
       @required this.appColor,
       @required this.color,
+      @required this.onHoverScale,
       this.updateValue});
+
+      _SideBarButtonState createState() => _SideBarButtonState();
+}
+
+class _SideBarButtonState extends State<SideBarButton> {
+
+  double scale = 1;
+
   @override
   Widget build(BuildContext context) {
     double spacing = MediaQuery.of(context).size.width / 40;
     double widthSize = MediaQuery.of(context).size.width / 6 + 40;
-    return Container(
+    return Transform.scale(
+      scale: scale,
+      child: Container(
         width: widthSize,
         height: 60,
-        child: pressed
+        child: widget.pressed
             ? Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
                         bottomLeft: Radius.circular(30))),
                 elevation: 0.0,
-                color: appColor,
+                color: widget.appColor,
                 child: spacing > 20
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -57,31 +71,31 @@ class SideBarButton extends StatelessWidget {
                             width: spacing,
                           ),
                           Icon(
-                            icon,
-                            color: color,
+                            widget.icon,
+                            color: widget.color,
                           ),
                           SizedBox(
                             width: spacing,
                           ),
                           Text(
-                            title,
+                            widget.title,
                             style: TextStyle(
-                              color: color,
+                              color: widget.color,
                             ),
                             overflow: TextOverflow.fade,
                           ),
                         ],
                       )
                     : Icon(
-                        icon,
-                        color: color,
+                        widget.icon,
+                        color: widget.color,
                       ),
               )
             : Center(
                 child: Container(
                   width: widthSize,
                   height: 60,
-                  child: TextButton(
+                  child: InkWell(
                     child: spacing > 20
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -89,21 +103,42 @@ class SideBarButton extends StatelessWidget {
                               SizedBox(
                                 width: spacing,
                               ),
-                              Icon(icon, color: accentColor),
+                              Icon(widget.icon, color: widget.accentColor),
                               SizedBox(
                                 width: spacing,
                               ),
                               Text(
-                                title,
-                                style: TextStyle(color: accentColor),
+                                widget.title,
+                                style: TextStyle(color: widget.accentColor),
                                 overflow: TextOverflow.fade,
                               ),
                             ],
                           )
-                        : Icon(icon, color: accentColor),
-                    onPressed: () => updateValue(index),
+                        : Icon(widget.icon, color: widget.accentColor),
+                    onTap: () {
+                      setState(() {
+                        scale = 1;
+                      });
+                      widget.updateValue(widget.index);
+                    },
+                    hoverColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onHover: (value) {
+                      if(value){
+                        setState(() {
+                          scale = widget.onHoverScale.clamp(0.5, 2);
+                        });
+                      }else{
+                        setState(() {
+                          scale = 1;
+                        });
+                      }
+                    },
                   ),
                 ),
-              ));
+              )),
+    );
   }
 }

@@ -1,3 +1,7 @@
+## [0.1.3] - 03/12/2021
+
+* Buttons are now animated
+
 ## [0.1.2+1] - 03/12/2021
 
 * Example updated

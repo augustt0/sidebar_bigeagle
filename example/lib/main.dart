@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
             color: Colors.teal,
             appColor: Colors.white, // Optional, white is default
             accentColor: Colors.white, // Optional, white is default
+            onHoverScale: 1.2, // Recomended value: 1.2, min: 0.5 max: 2
             logo: Image.asset(
               "res/placeholder.com-logo4.png",
               fit: BoxFit.fitWidth,
