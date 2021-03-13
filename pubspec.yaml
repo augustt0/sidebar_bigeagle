@@ -1,6 +1,6 @@
 name: sidebar_bigeagle
 description: This package adds a Sidebar widget which is convenient for Web & Desktop.
-version: 0.1.2+1
+version: 0.1.3
 homepage: https://github.com/augustt0/sidebar_bigeagle
 
 environment:
@@ -24,11 +24,6 @@ dev_dependencies:
 flutter:
   plugin:
     platforms:
-      android:
-        package: com.bigeagle.sidebar_bigeagle
-        pluginClass: SidebarBigeaglePlugin
-      ios:
-        pluginClass: SideBar
       macos:
         pluginClass: SideBar
       windows:
