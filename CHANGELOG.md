@@ -1,3 +1,14 @@
+## [0.2.2] - 03/12/2021
+
+* Icon is now an optional parameter
+* Added optional parameter: borderRadius
+* Added optional parameter: elevation
+* Updated example
+
+## [0.2.0] - 03/12/2021
+
+* SideBar now supports Null Safety!!
+
 ## [0.1.3] - 03/12/2021
 
 * Buttons are now animated

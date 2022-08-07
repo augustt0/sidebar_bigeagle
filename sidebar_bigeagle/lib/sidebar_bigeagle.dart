@@ -1,11 +1,9 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 
 class SidebarBigeagle {
-  static const MethodChannel _channel =
-      const MethodChannel('sidebar_bigeagle');
+  static const MethodChannel _channel = const MethodChannel('sidebar_bigeagle');
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');

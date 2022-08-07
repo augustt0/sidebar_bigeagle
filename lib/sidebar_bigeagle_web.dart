@@ -28,11 +28,11 @@ class SideBar {
     switch (call.method) {
       case 'getPlatformVersion':
         return getPlatformVersion();
-        break;
       default:
         throw PlatformException(
           code: 'Unimplemented',
-          details: 'sidebar_bigeagle for web doesn\'t implement \'${call.method}\'',
+          details:
+              'sidebar_bigeagle for web doesn\'t implement \'${call.method}\'',
         );
     }
   }

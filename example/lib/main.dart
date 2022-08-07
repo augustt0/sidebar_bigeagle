@@ -11,10 +11,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  int _selectedIndex = 0; // 0 is the first tab
 
-  int _selectedIndex = 0;
+  List<Widget> pages =
+      []; // List of pages to be displayed in the body of the app.
 
-  List<Widget> pages = [];
   @override
   void initState() {
     super.initState();
@@ -35,43 +36,46 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('BigEagle SideBar example app'),
         ),
         body: Row(
-        children: [
-          // SideBar Big Eagle
-          SideBar(
-            color: Colors.teal,
-            appColor: Colors.white, // Optional, white is default
-            accentColor: Colors.white, // Optional, white is default
-            onHoverScale: 1.2, // Recomended value: 1.2, min: 0.5 max: 2
-            logo: Image.asset(
-              "res/placeholder.com-logo4.png",
-              fit: BoxFit.fitWidth,
-              ),
-            children: [
-              // Button list
-              SideBarButtonFlat(title: "Dashboard", icon: Icons.dashboard),
-              SideBarButtonFlat(title: "Inventory", icon: Icons.view_list),
-              SideBarButtonFlat(title: "Search", icon: Icons.search),
-              SideBarButtonFlat(title: "Online orders", icon: Icons.receipt),
-              SideBarButtonFlat(title: "Codes", icon: Icons.qr_code_scanner),
-              SideBarButtonFlat(title: "Settings", icon: Icons.settings),
-              SideBarButtonFlat(title: "About", icon: Icons.info),
-            ],
-            onChange: (value) {
-              // When the selection changes, value it's an int
-              setState(() {
-                _selectedIndex = value;
-              });
-            }
-          ),
-          // Principal app content
-          Expanded(
-            child: pages[_selectedIndex],
-          )
-        ],
-      ),
+          children: [
+            // SideBar Big Eagle
+            SideBar(
+                color: Colors.teal,
+                appColor: Colors.white, // Optional, white is default
+                accentColor: Colors.white, // Optional, white is default
+                onHoverScale: 1.2, // Recomended value: 1.2, min: 0.5 max: 2
+                borderRadius: 35.0, // Optional, 35.0 is default
+                elevation: 0.0, // Optional, 0.0 is default
+                logo: Image.asset(
+                  "res/placeholder.com-logo4.png",
+                  fit: BoxFit.fitWidth,
+                ), // If you don't especify a logo, an empty container is used
+                children: [
+                  // Button list
+                  SideBarButtonFlat(title: "Dashboard", icon: Icons.dashboard),
+                  SideBarButtonFlat(title: "Inventory", icon: Icons.view_list),
+                  SideBarButtonFlat(title: "Search", icon: Icons.search),
+                  SideBarButtonFlat(
+                      title: "Online orders", icon: Icons.receipt),
+                  SideBarButtonFlat(
+                      title: "Codes", icon: Icons.qr_code_scanner),
+                  SideBarButtonFlat(title: "Settings", icon: Icons.settings),
+                  SideBarButtonFlat(title: "About", icon: Icons.info),
+                ],
+                onChange: (value) {
+                  // This is the callback that is called when a button is pressed
+                  setState(() {
+                    _selectedIndex = value;
+                  });
+                }),
+            // Main content
+            Expanded(
+              child: pages[_selectedIndex],
+            )
+          ],
+        ),
       ),
     );
   }

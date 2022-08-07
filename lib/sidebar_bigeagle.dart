@@ -1,12 +1,10 @@
 library sidebar_bigeagle;
 
 export 'package:sidebar_bigeagle/src/SideBarButton.dart';
-export 'package:sidebar_bigeagle/src/SideBarButtonFlat.dart';
 
 import 'package:flutter/material.dart';
 
 import 'src/SideBarButton.dart';
-import 'src/SideBarButtonFlat.dart';
 
 typedef IntCallback(int);
 
@@ -19,7 +17,7 @@ class SideBar extends StatefulWidget {
   final IntCallback onChange;
 
   /// Logo of the app
-  final Widget logo;
+  final Widget? logo;
 
   /// Should the buttons expand when mouse hover? How much?, 1 is default
   final double onHoverScale;
@@ -33,30 +31,29 @@ class SideBar extends StatefulWidget {
   /// The app color, white is default.
   final Color appColor;
 
+  /// Border radius of the Side Bar
+  final double borderRadius;
+
+  /// Elevation of the Side Bar
+  final double elevation;
+
   SideBar(
-      {Key key,
-      @required this.children,
-      @required this.logo,
-      @required this.color,
+      {super.key,
+      required this.children,
+      required this.color,
+      this.logo,
       this.accentColor = Colors.white,
       this.appColor = Colors.white,
+      this.borderRadius = 35.0,
+      this.elevation = 0.0,
       this.onHoverScale = 1.0,
-      @required this.onChange})
-      : super(key: key);
+      required this.onChange});
   @override
-  _SideBarState createState() =>
-      _SideBarState(children: children, logo: logo, color: color);
+  _SideBarState createState() => _SideBarState();
 }
 
 class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
-  _SideBarState({@required this.children, this.logo, this.color});
-
-  Widget logo;
-  Color color;
-
   static int _selectedIndex = 0;
-
-  List<SideBarButtonFlat> children;
 
   List<Widget> _selectedButtonOpen = [];
   List<Widget> _selectedButtonClosed = [];
@@ -69,7 +66,7 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
   }
 
   void initializeWidgets() {
-    children.forEach((element) {
+    widget.children.forEach((element) {
       SideBarButton sideBarButtonOpen = new SideBarButton(
         title: element.title,
         icon: element.icon,
@@ -78,7 +75,8 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
         accentColor: widget.accentColor,
         appColor: widget.appColor,
         pressed: true,
-        index: children.indexOf(element),
+        index: widget.children.indexOf(element),
+        updateValue: (val) => updateButton(val),
       );
 
       SideBarButton sideBarButtonClose = new SideBarButton(
@@ -89,8 +87,8 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
         accentColor: widget.accentColor,
         appColor: widget.appColor,
         pressed: false,
-        index: children.indexOf(element),
-        updateValue: updateButton,
+        index: widget.children.indexOf(element),
+        updateValue: (val) => updateButton(val),
       );
 
       _selectedButtonOpen.add(sideBarButtonOpen);
@@ -123,37 +121,37 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(35),
-                          bottomRight: Radius.circular(35))),
-                  elevation: 0.0,
-                  color: color,
+                          topRight: Radius.circular(widget.borderRadius),
+                          bottomRight: Radius.circular(widget.borderRadius))),
+                  elevation: widget.elevation,
+                  color: widget.color,
                   child: Stack(
                     children: [
                       Positioned(
-                left: 10,
-                top: MediaQuery.of(context).size.height / 4,
-                bottom: 0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 6 + 40,
-                  height: MediaQuery.of(context).size.height,
-                  child: ListView.builder(
-                      itemCount: _selectedButtonOpen.length,
-                      shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
-                      itemBuilder: (context, i) {
-                        return _selectedIndex == i
-                              ? _selectedButtonOpen[i]
-                              : _selectedButtonClosed[i];
-                      }),
-                )),
-            Positioned(
-              top: 40,
-              left: 10,
-              child: Container(
-                width: MediaQuery.of(context).size.width / 6 + 10,
-                child: logo,
-              ),
-            ),
+                          left: 10,
+                          top: MediaQuery.of(context).size.height / 4,
+                          bottom: 0,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 6 + 40,
+                            height: MediaQuery.of(context).size.height,
+                            child: ListView.builder(
+                                itemCount: _selectedButtonOpen.length,
+                                shrinkWrap: true,
+                                physics: BouncingScrollPhysics(),
+                                itemBuilder: (context, i) {
+                                  return _selectedIndex == i
+                                      ? _selectedButtonOpen[i]
+                                      : _selectedButtonClosed[i];
+                                }),
+                          )),
+                      Positioned(
+                        top: 40,
+                        left: 10,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 6 + 10,
+                          child: widget.logo ?? Container(),
+                        ),
+                      ),
                     ],
                   ),
                 ),
