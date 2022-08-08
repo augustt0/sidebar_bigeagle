@@ -47,11 +47,8 @@ class _MyAppState extends State<MyApp> {
                 accentColor: Colors.white, // Optional, white is default
                 onHoverScale: 1.2, // Recomended value: 1.2, min: 0.5 max: 2
                 borderRadius: 35.0, // Optional, 35.0 is default
-                elevation: 0.0, // Optional, 0.0 is default
-                logo: Image.asset(
-                  "res/placeholder.com-logo4.png",
-                  fit: BoxFit.fitWidth,
-                ), // If you don't especify a logo, an empty container is used
+                elevation: 6.0, // Optional, 0.0 is default
+                // If you don't especify a logo, an empty container is used
                 children: [
                   // Button list
                   SideBarButtonFlat(title: "Dashboard", icon: Icons.dashboard),

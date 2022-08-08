@@ -1,11 +1,15 @@
-## [0.2.2] - 03/12/2021
+## [0.2.2+1] - 08/08/2022
+
+* Code cleaning
+
+## [0.2.2] - 07/08/2022
 
 * Icon is now an optional parameter
 * Added optional parameter: borderRadius
 * Added optional parameter: elevation
 * Updated example
 
-## [0.2.0] - 03/12/2021
+## [0.2.0] - 06/08/2022
 
 * SideBar now supports Null Safety!!
 

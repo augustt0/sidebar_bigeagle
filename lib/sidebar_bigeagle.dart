@@ -56,50 +56,12 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
   static int _selectedIndex = 0;
 
   List<Widget> _selectedButtonOpen = [];
-  List<Widget> _selectedButtonClosed = [];
 
   updateButton(int x) {
     setState(() {
       _selectedIndex = x;
       widget.onChange(x);
     });
-  }
-
-  void initializeWidgets() {
-    widget.children.forEach((element) {
-      SideBarButton sideBarButtonOpen = new SideBarButton(
-        title: element.title,
-        icon: element.icon,
-        onHoverScale: widget.onHoverScale,
-        color: widget.color,
-        accentColor: widget.accentColor,
-        appColor: widget.appColor,
-        pressed: true,
-        index: widget.children.indexOf(element),
-        updateValue: (val) => updateButton(val),
-      );
-
-      SideBarButton sideBarButtonClose = new SideBarButton(
-        title: element.title,
-        icon: element.icon,
-        onHoverScale: widget.onHoverScale,
-        color: widget.color,
-        accentColor: widget.accentColor,
-        appColor: widget.appColor,
-        pressed: false,
-        index: widget.children.indexOf(element),
-        updateValue: (val) => updateButton(val),
-      );
-
-      _selectedButtonOpen.add(sideBarButtonOpen);
-      _selectedButtonClosed.add(sideBarButtonClose);
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initializeWidgets();
   }
 
   @override
@@ -139,9 +101,20 @@ class _SideBarState extends State<SideBar> with TickerProviderStateMixin {
                                 shrinkWrap: true,
                                 physics: BouncingScrollPhysics(),
                                 itemBuilder: (context, i) {
-                                  return _selectedIndex == i
-                                      ? _selectedButtonOpen[i]
-                                      : _selectedButtonClosed[i];
+                                  SideBarButton sideBarButtonOpen =
+                                      new SideBarButton(
+                                    title: widget.children[i].title,
+                                    icon: widget.children[i].icon,
+                                    onHoverScale: widget.onHoverScale,
+                                    color: widget.color,
+                                    accentColor: widget.accentColor,
+                                    appColor: widget.appColor,
+                                    pressed: _selectedIndex == i,
+                                    index: widget.children
+                                        .indexOf(widget.children[i]),
+                                    updateValue: (val) => updateButton(val),
+                                  );
+                                  return sideBarButtonOpen;
                                 }),
                           )),
                       Positioned(
